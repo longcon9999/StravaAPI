@@ -55,11 +55,13 @@ class Activity:
         self.start_date_local = _json_data.get("start_date_local")
         self.average_speed = _json_data.get("average_speed")
         self.max_speed = _json_data.get("max_speed")
+        self.time_zone = _json_data.get("timezone")
 
     def to_list(self):
         # ["Tên", "Khoảng cách", "Thời gian", "Ngày thực hiện", "Tốc độ trung bình", "Tốc độ lớn nhất"]
         return [
-            self.name, self.distance, self.moving_time, self.start_date_local, self.average_speed, self.max_speed
+            self.name, self.start_date_local, self.start_date, self.time_zone, self.distance, self.moving_time,
+            self.average_speed, self.max_speed, self.sport_type
         ]
 
     def __repr__(self):
