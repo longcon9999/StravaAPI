@@ -8,7 +8,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, QFileDialog, QHeaderView, QTableWidgetItem
 
 from UI import Ui_MainWindow
-from function import NAME_TOOL, get_data_csv, update_data_csv, date_to_timestamp
+from function import NAME_TOOL, get_data_csv, update_data_csv, date_to_timestamp, CURRENT_TIME
 from model import CustomFormatter, User
 from thread import ThreadCrawl, ThreadGetToken
 
@@ -28,7 +28,7 @@ class MainView(QMainWindow):
         self.setup_logging()
 
     def setup_logging(self):
-        logging.basicConfig(filename=f"std_log.log",
+        logging.basicConfig(filename=f"std_log_{CURRENT_TIME}.log",
                             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)",
                             filemode="w",
                             encoding="utf-8")

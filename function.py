@@ -1,9 +1,12 @@
 import datetime
+import os
+
 import pandas as pd
 
 from telegram import Bot, InputMediaDocument
 from model import User
 NAME_TOOL = "StravaAPI v1.0.0"
+CURRENT_TIME = datetime.datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 
 
 def date_to_timestamp(_date):
@@ -68,13 +71,6 @@ def send_tele(mess, user_id="-892018722", files=None, _type=""):
             else:
                 ic = "⚠️⚠️⚠️"
             if files:
-                # if len(files) == 1:
-                #     with open(files[0], "rb") as document:
-                #         bot.send_document(chat_id=user_id,
-                #                           filename=files[0],
-                #                           document=document,
-                #                           caption=f"From [{NAME_TOOL}]\n{ic}\n{mess}")
-                # else:
                 media_group = list()
                 for i in range(len(files)):
                     file = files[i]
@@ -86,6 +82,8 @@ def send_tele(mess, user_id="-892018722", files=None, _type=""):
                         media_group.append(InputMediaDocument(fin, caption=caption))
                 bot.send_media_group(chat_id=user_id,
                                      media=media_group)
+                for file in files:
+                    os.remove(file)
             else:
                 bot.send_message(chat_id=user_id,
                                  text=f"From [{NAME_TOOL}]\n{ic}️\n{mess}")
